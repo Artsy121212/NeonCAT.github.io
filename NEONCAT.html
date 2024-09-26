@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEON CAT!!!!!</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: background-color 1s;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>GO CRAZYYYYY!!!!!!</h1>
+    <audio id="sound" src="Audio/NyanCatoriginal.mp3"></audio>
+    <div id="message">Click anywhere to enable sound</div>
+    <script>
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function changeBackgroundColor() {
+            document.body.style.backgroundColor = getRandomColor();
+        }
+
+        function enableAudio() {
+            const audio = document.getElementById('sound');
+            audio.play().catch(error => {
+                console.log('Autoplay was prevented:', error);
+            });
+            document.getElementById('message').style.display = 'none';
+            window.removeEventListener('click', enableAudio);
+        }
+
+        window.addEventListener('click', enableAudio);
+        setInterval(changeBackgroundColor, 2000);
+    </script>
+</body>
+</html>
